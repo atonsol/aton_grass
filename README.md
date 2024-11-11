@@ -17,7 +17,7 @@
 ![userid](https://github.com/user-attachments/assets/7b8cbb77-5371-41c9-821f-cb30b7706797)
 #### Usage command
 - Open file ```proxy_list.txt``` and insert your proxies
-- Open file ```run.py``` and insert your userid in line 81
+- Open file ```run.py``` via notepad or notepad++ or Visual Studio Code and insert your userid in line 81
 - Run ```python run.py```
 
 
