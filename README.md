@@ -22,8 +22,7 @@
 - Example at Line 81 here:
 - tasks = [asyncio.ensure_future(connect_to_wss(i, 'enter your userid')) for i in local_proxies]
 - ===> tasks = [asyncio.ensure_future(connect_to_wss(i, 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')) for i in local_proxies]
-- Run ```python run.py```
-
+- Run ```python run.py``` (Done!!!)
 - Btw buy proxy in Vietnam, please contact with me.
 - ZL: 0358028338
 
