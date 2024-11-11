@@ -20,10 +20,10 @@
 - Open file ```run.py``` via notepad or notepad++ or Visual Studio Code and insert your userid in line 81
 
 - Example at Line 81 here:
-  ~
+- 
     tasks = [asyncio.ensure_future(connect_to_wss(i, 'enter your userid')) for i in local_proxies]
  => tasks = [asyncio.ensure_future(connect_to_wss(i, 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')) for i in local_proxies]
-  ~
+- 
 - Run ```python run.py```
 
 
