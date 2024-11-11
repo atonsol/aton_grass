@@ -18,6 +18,10 @@
 #### Usage command
 - Open file ```proxy_list.txt``` and insert your proxies
 - Open file ```run.py``` via notepad or notepad++ or Visual Studio Code and insert your userid in line 81
+- 
+-    tasks = [asyncio.ensure_future(connect_to_wss(i, 'enter your userid')) for i in local_proxies]
+- => tasks = [asyncio.ensure_future(connect_to_wss(i, 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')) for i in local_proxies]
+- 
 - Run ```python run.py```
 
 
