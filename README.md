@@ -11,12 +11,10 @@
 #### How to get your grass userid
 - Login to https://app.getgrass.io
 - Press f12 go to console, then type ```allow pasting``` insert to console
-
-
+![pasting](https://github.com/user-attachments/assets/80d2e2ae-fde7-49cb-8e99-9746e2e01de7)
 - Then insert this code to console
 ```localStorage.getItem('userId')```
-
-
+![userid](https://github.com/user-attachments/assets/7b8cbb77-5371-41c9-821f-cb30b7706797)
 #### Usage command
 - Open file ```proxy_list.txt``` and insert your proxies
 - Open file ```run.py``` and insert your userid in line 81
