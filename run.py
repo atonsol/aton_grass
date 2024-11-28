@@ -78,7 +78,7 @@ async def main():
     #find user_id on the site in conlose localStorage.getItem('userId') (if you can't get it, write allow pasting)
     #user_ids
     with open('usergrass.txt', 'r') as file:
-        user_ids = file.read().splitlines()
+            user_ids = file.read().splitlines()
         
     with open('proxy_list.txt', 'r') as file:
             local_proxies = file.read().splitlines()
