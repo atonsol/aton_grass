@@ -19,6 +19,13 @@
 - Open file ```proxy_list.txt``` and insert your proxies
 - Open file ```usergrass.txt``` and insert your user_id
 - Run ```python run.py``` (Done!!!)
+- To run multiple grass accounts on 1 PC, contact via telegram for support ( t.me/atonsol )
+1. Create a separate folder for each account. The folder contains 3 files proxy_list, usergrass and run.py
+   ![folder](https://github.com/user-attachments/assets/4a882fee-59c7-4eda-89b2-ed673b3a217f)
+3. Each folder requires different information on proxy and user_id.
+4. Run the run.py file in each folder.
+   ![muilte acc](https://github.com/user-attachments/assets/e0e99130-63e7-41ca-8817-698fb2b5aec5)
+- Note: if using win 11, you can rename the python command line tab for easy management as shown
 - Btw buy proxy in Vietnam, please contact with me.
 - Zalo: 0358028338
 
