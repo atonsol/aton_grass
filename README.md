@@ -17,11 +17,7 @@
 ![userid](https://github.com/user-attachments/assets/7b8cbb77-5371-41c9-821f-cb30b7706797)
 #### Usage command
 - Open file ```proxy_list.txt``` and insert your proxies
-- Open file ```run.py``` via notepad or notepad++ or Visual Studio Code and insert your userid in line 81
-
-- Example at Line 81 here:
-- tasks = [asyncio.ensure_future(connect_to_wss(i, 'enter your userid')) for i in local_proxies]
-- ===> tasks = [asyncio.ensure_future(connect_to_wss(i, 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')) for i in local_proxies]
+- Open file ```usergrass.txt``` and insert your user_id
 - Run ```python run.py``` (Done!!!)
 - Btw buy proxy in Vietnam, please contact with me.
 - Zalo: 0358028338
