@@ -76,9 +76,14 @@ async def connect_to_wss(socks5_proxy, user_id):
 
 async def main():
     #find user_id on the site in conlose localStorage.getItem('userId') (if you can't get it, write allow pasting)
+    #user_ids
+    with open('usergrass.txt', 'r') as file:
+        user_ids = file.read().splitlines()
+        
     with open('proxy_list.txt', 'r') as file:
             local_proxies = file.read().splitlines()
-    tasks = [asyncio.ensure_future(connect_to_wss(i, 'enter your userid')) for i in local_proxies]
+        
+    tasks = [asyncio.ensure_future(connect_to_wss(i, user_ids)) for i in local_proxies]
     await asyncio.gather(*tasks)
 
 if __name__ == '__main__':
