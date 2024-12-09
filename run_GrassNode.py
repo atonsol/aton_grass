@@ -1,4 +1,5 @@
 #script for 1 user_id and a whole bunch of proxies
+#Node 1.25x but but maintenance, not connected!
 import asyncio
 import random
 import ssl
