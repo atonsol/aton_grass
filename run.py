@@ -1,5 +1,4 @@
 #script for 1 user_id and a whole bunch of proxies
-#Node 1.25x but but maintenance, not connected!
 import asyncio
 import random
 import ssl
@@ -23,7 +22,11 @@ async def connect_to_wss(socks5_proxy, user_id):
             await asyncio.sleep(random.randint(1, 10) / 10)
             custom_headers = {
                 "User-Agent": random_user_agent,
-                "Origin": "chrome-extension://lkbnfiajjmbhnfledhphioinpickokdi"
+                #Node 1.25x but maintenance, not connected!
+                #"Origin": "chrome-extension://lkbnfiajjmbhnfledhphioinpickokdi"
+                
+                #Lite 1x but run normal
+                "Origin": "chrome-extension://ilehaonighjijnmpnagapkhpcdbhclfg"
             }
             ssl_context = ssl.create_default_context()
             ssl_context.check_hostname = False
