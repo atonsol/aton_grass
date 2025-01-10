@@ -261,7 +261,7 @@ async def main():
     
     print(f"{Fore.YELLOW}Total Proxies: {len(local_proxies)}{Style.RESET_ALL}")
     
-    tasks = [asyncio.ensure_future(connect_to_wss(i, _user_id)) for i in local_proxies]
+    tasks = [asyncio.ensure_future(connect_to_wss(i, _user_id, mode)) for i in local_proxies]
     await asyncio.gather(*tasks)
 
 if __name__ == '__main__':
