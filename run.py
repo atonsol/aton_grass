@@ -6,12 +6,17 @@ import time
 import uuid
 import base64
 import aiohttp
-import logging
 from datetime import datetime
 from colorama import init, Fore, Style
 from websockets_proxy import Proxy, proxy_connect
 
 init(autoreset=True)
+
+BANNER = """
+Welcome, My name is Aton.
+Twitter: x.com/aton_sol
+Telegram: t.me/aton_sol
+"""
 
 EDGE_USERAGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.2365.57",
@@ -63,7 +68,7 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
     device_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, socks5_proxy))
     
     random_user_agent = random.choice(EDGE_USERAGENTS)
-
+    
     colorful_log(
         proxy=socks5_proxy,  
         device_id=device_id, 
@@ -74,7 +79,7 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
 
     has_received_action = False
     is_authenticated = False
-
+    
     while True:
         try:
             await asyncio.sleep(random.randint(1, 10) / 10)
@@ -96,7 +101,6 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                 #"wss://proxy3.wynd.network:4444/",
                 #"wss://proxy3.wynd.network:4650/"
             ]
-            
             uri = random.choice(urilist)
             server_hostname = "proxy.wynd.network"
             proxy = Proxy.from_url(socks5_proxy)
@@ -106,22 +110,22 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                 async def send_ping():
                     while True:
                         if has_received_action:
-                        send_message = json.dumps(
-                            {"id": str(uuid.uuid5(uuid.NAMESPACE_DNS, socks5_proxy)), 
-                             "version": "1.0.0", 
-                             "action": "PING", 
-                             "data": {}})
-                        
-                        colorful_log(
-                            proxy=socks5_proxy,  
-                            device_id=device_id, 
-                            message_type="SENDING PING", 
-                            message_content=send_message,
-                            is_sent=True,
-                            mode=mode
-                        )
-                        
-                        await websocket.send(send_message)
+                            send_message = json.dumps(
+                                {"id": str(uuid.uuid5(uuid.NAMESPACE_DNS, socks5_proxy)), 
+                                 "version": "1.0.0", 
+                                 "action": "PING", 
+                                 "data": {}})
+                            
+                            colorful_log(
+                                proxy=socks5_proxy,  
+                                device_id=device_id, 
+                                message_type="SENDING PING", 
+                                message_content=send_message,
+                                is_sent=True,
+                                mode=mode
+                            )
+                            
+                            await websocket.send(send_message)
                         await asyncio.sleep(5)
 
                 await asyncio.sleep(1)
@@ -129,14 +133,14 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
 
                 while True:
                     if is_authenticated and not has_received_action:
-                    colorful_log(
-                        proxy=socks5_proxy, 
-                        device_id=device_id, 
-                        message_type="AUTHENTICATED | WAIT UNTIL THE PING GATE OPENS",
-                        message_content="Waiting for " + ("HTTP_REQUEST" if mode == "extension" else "OPEN_TUNNEL"),
-                        mode=mode
-                    )
-
+                        colorful_log(
+                            proxy=socks5_proxy,
+                            device_id=device_id,
+                            message_type="AUTHENTICATED | WAIT UNTIL THE PING GATE OPENS",
+                            message_content="Waiting for " + ("HTTP_REQUEST" if mode == "extension" else "OPEN_TUNNEL"),
+                            mode=mode
+                        )
+                    
                     response = await websocket.recv()
                     message = json.loads(response)
                     
@@ -147,7 +151,7 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                         message_content=json.dumps(message),
                         mode=mode
                     )
-                    
+
                     if message.get("action") == "AUTH":
                         auth_response = {
                             "id": message["id"],
@@ -161,8 +165,9 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                                 "version": "4.26.2" if mode == "extension" else "4.30.0"
                             }
                         }
-                    if mode == "extension":
-                        auth_response["result"]["extension_id"] = "lkbnfiajjmbhnfledhphioinpickokdi"
+                        
+                        if mode == "extension":
+                            auth_response["result"]["extension_id"] = "lkbnfiajjmbhnfledhphioinpickokdi"
                         
                         colorful_log(
                             proxy=socks5_proxy,  
@@ -175,7 +180,7 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                         
                         await websocket.send(json.dumps(auth_response))
                         is_authenticated = True
-
+                    
                     elif message.get("action") in ["HTTP_REQUEST", "OPEN_TUNNEL"]:
                         has_received_action = True
                         request_data = message["data"]
@@ -214,7 +219,7 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
                                 )
                                 
                                 await websocket.send(json.dumps(http_response))
-                                
+
                     elif message.get("action") == "PONG":
                         pong_response = {"id": message["id"], "origin_action": "PONG"}
                         
@@ -240,11 +245,14 @@ async def connect_to_wss(socks5_proxy, user_id, mode):
             await asyncio.sleep(5)
 
 async def main():
-    print(f"{Fore.CYAN}ATON_SOL | GetGrass Crooter V4{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}{BANNER}{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}ATON SOL | GetGrass Crooter V4{Style.RESET_ALL}")
+    
     print(f"{Fore.GREEN}Select Mode:{Style.RESET_ALL}")
     print("1. Extension Mode")
     print("2. Desktop Mode")
-     while True:
+    
+    while True:
         mode_choice = input("Enter your choice (1/2): ").strip()
         if mode_choice in ['1', '2']:
             break
